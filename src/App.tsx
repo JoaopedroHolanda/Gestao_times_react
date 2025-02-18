@@ -1,7 +1,8 @@
-import Formulario from './componentes/Formulario/index.js';
-import Banner from './componentes/Banner/index.js';
-import Time from './componentes/Time/index.js';
+import Formulario from './componentes/Formulario/index';
+import Banner from './componentes/Banner/index'
+import Time from './componentes/Time/index';
 import { useState } from 'react';
+import { IColaborador } from './shared/interfaces/IColaborador';
 
 function App() {
 
@@ -44,16 +45,16 @@ function App() {
   ]
 
 
-  const [colaboradores, setColaboradores] = useState([])
+  const [colaboradores, setColaboradores] = useState<IColaborador[]>([])
 
-  const aoNovoColaboradorAdicionado = (colaborador) =>{
+  const aoNovoColaboradorAdicionado = (colaborador: IColaborador) =>{
     
       setColaboradores([...colaboradores, colaborador])
   }
   
   return (
     <div className="App">
-      <Banner/>
+      <Banner enderecoImagem='/imagens/banner.png' textoAlternativo='O banner principal da página do Organo'/>
       <Formulario times={times.map(time => time.nome)} aoColaboradorCadastrado={colaborador => aoNovoColaboradorAdicionado(colaborador)}/>
       {times.map(time => <Time key={time.nome} nome={time.nome} corPrimaria={time.corPrimaria} corSecundaria={time.corSecundaria} colaboradores={colaboradores.filter(colaborador => colaborador.time === time.nome)}/>)}
 
