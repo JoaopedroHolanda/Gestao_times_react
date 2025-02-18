@@ -16,19 +16,22 @@ const Formulario = (props: FormularioProps) =>{
     const [cargo,setCargo]= useState("")
     const [imagem, setImagem] = useState("")
     const [time, setTime] = useState("")
+    const [data, setData] = useState("")
 
     const aoSalvar = (evento: React.FormEvent<HTMLFormElement>)=>{
         evento.preventDefault()
        props.aoColaboradorCadastrado({
-        nome,
+         nome,
          cargo, 
          imagem, 
-         time
+         time,
+         data
        })
        setNome("")
        setCargo("")
        setImagem("")
        setTime("")
+       setData("")
     }
     return(
         <section className="formulario">
@@ -37,6 +40,7 @@ const Formulario = (props: FormularioProps) =>{
             <CampoTexto obrigatorio = {true} label="Nome" placehoader = "Digite seu nome" valor={nome} aoAlterado={valor=>setNome(valor)}/>
             <CampoTexto  obrigatorio = {true}label="Cargo" placehoader = "Digite seu cargo" valor={cargo} aoAlterado={valor=>setCargo(valor)}/>
             <CampoTexto label="Imagem" placehoader = "Digite o endereço da imagem" valor={imagem} aoAlterado={valor=>setImagem(valor)}/>
+            <CampoTexto label="data de entrada no time" placehoader="" tipo="date" valor={data} aoAlterado={valor=>setData(valor)}/>
             <ListaSuspensa obrigatorio = {true}label="Time" itens = {props.times} valor={time} aoAlterado={valor=> setTime(valor)}/>
             <Botao>
                 Criar card

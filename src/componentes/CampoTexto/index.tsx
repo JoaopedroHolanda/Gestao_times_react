@@ -4,11 +4,12 @@ interface CampoTextoProps{
     aoAlterado: (valor: string) => void
     placehoader: string
     label: string
-    valor: string
+    valor: string 
     obrigatorio?: boolean
+    tipo?: 'text' | 'password' | 'email' | 'date'
 }
 
-const CampoTexto =({aoAlterado, label, placehoader, valor, obrigatorio = false}: CampoTextoProps)=>{
+const CampoTexto =({aoAlterado, label, placehoader, valor, obrigatorio = false, tipo = 'text'}: CampoTextoProps)=>{
 
     const placeholderModificada = `${placehoader}`
     
@@ -22,7 +23,9 @@ const CampoTexto =({aoAlterado, label, placehoader, valor, obrigatorio = false}:
             <input value={valor}
              onChange={aoDigitado}
              required={obrigatorio}
-             placeholder={placeholderModificada}/>
+             placeholder={placeholderModificada}
+             type={tipo}
+             />
         </div>
     )
 }
